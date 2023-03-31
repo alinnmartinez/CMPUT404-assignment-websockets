@@ -159,7 +159,7 @@ def update(entity):
     '''update the entities via this interface'''
     entity2 = entity.keys()[0]
     e_data = entity[entity2]
-    myWorld.update(entity, entity, e_data)
+    myWorld.update(entity, entity2, e_data)
 
 @app.route("/world", methods=['POST','GET'])    
 def world():
