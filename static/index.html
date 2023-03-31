@@ -265,9 +265,9 @@ function wsSetup() {
         try {
             debug("WebSocket Recv:" + msg.data);
             //XXX: TODO What are you going to do here?
-            
-            let msg_data = JSON.parse(msg.data);  
-            let entity = msg_data.keys()[0];
+            let msg_data = JSON.parse(msg.data);
+            console.log(msg_data);
+            let entity = Object.keys(msg_data)[0];
             let e_data = msg_data[entity];
             //drawNextFrame();
             addEntity(entity, e_data); 
