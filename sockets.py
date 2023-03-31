@@ -13,6 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# Reference(s): Code used from Abram Hindle's chat.py 
+#    https://github.com/uofa-cmput404/cmput404-slides/blob/master/examples/WebSocketsExamples/chat.py   
+#
 import flask
 from flask import Flask, request
 from flask_sockets import Sockets
