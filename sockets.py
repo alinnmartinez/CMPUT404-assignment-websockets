@@ -24,7 +24,8 @@ from gevent import queue
 import time
 import json
 import os
-
+import sys
+import logging
 app = Flask(__name__)
 sockets = Sockets(app)
 app.debug = True
@@ -114,6 +115,7 @@ def read_ws(ws,client):
             print(f"WS RECV: {msg}")
             if msg:
                 packet = json.loads(msg)
+                app.logger.debug(f"Packet: {packet}")
                 send_all_json( packet )
             else:
                 break
@@ -130,6 +132,7 @@ def subscribe_socket(ws):
     # Code used from Abram Hindle's chat.py 
     # https://github.com/uofa-cmput404/cmput404-slides/blob/master/examples/WebSocketsExamples/chat.py
     client = Client()
+    app.logger.debug(f"Client: {client}")
     clients.append(client)
     g = gevent.spawn( read_ws, ws, client )    
     try:

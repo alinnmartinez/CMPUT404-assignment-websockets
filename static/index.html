@@ -122,6 +122,13 @@ function getPosition(e) {
 	}
 }
 
+function addEntityNoUpdate(entity, data){
+    world[entity] = data;
+    drawNextFrame(); // (but should we?)
+    //XXX: Send a ws message that updates the entity you just modified!
+
+}
+
 function addEntity(entity, data) {
     world[entity] = data;
     drawNextFrame(); // (but should we?)
@@ -261,7 +268,7 @@ function wsSetup() {
     socket.onerror = function(msg) {
         debug("WebSocket Error:" + msg.data);
     };
-    socket.onmessage = function(msg) {  
+    socket.onmessage = function(msg) { 
         try {
             debug("WebSocket Recv:" + msg.data);
             //XXX: TODO What are you going to do here?
@@ -269,9 +276,10 @@ function wsSetup() {
             console.log(msg_data);
             let entity = Object.keys(msg_data)[0];
             let e_data = msg_data[entity];
-            //drawNextFrame();
-            addEntity(entity, e_data); 
-
+            // world[entity] = e_data
+            // drawNextFrame();
+            addEntityNoUpdate(entity, e_data);
+            return
         } catch (e) {
             alert("socket on message: " + e);
         }
