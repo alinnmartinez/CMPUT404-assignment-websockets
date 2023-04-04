@@ -122,12 +122,12 @@ function getPosition(e) {
 	}
 }
 
-function addEntityNoUpdate(entity, data){
-    world[entity] = data;
-    drawNextFrame(); // (but should we?)
-    //XXX: Send a ws message that updates the entity you just modified!
+// function addEntityNoUpdate(entity, data){
+//     world[entity] = data;
+//     drawNextFrame(); // (but should we?)
+//     //XXX: Send a ws message that updates the entity you just modified!
 
-}
+// }
 
 function addEntity(entity, data) {
     world[entity] = data;
@@ -278,7 +278,7 @@ function wsSetup() {
             let e_data = msg_data[entity];
             // world[entity] = e_data
             // drawNextFrame();
-            addEntityNoUpdate(entity, e_data);
+            addEntity(entity, e_data);
             return
         } catch (e) {
             alert("socket on message: " + e);
